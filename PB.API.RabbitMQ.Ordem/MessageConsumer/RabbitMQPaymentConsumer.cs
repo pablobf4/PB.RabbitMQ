@@ -1,6 +1,4 @@
-﻿using RabbitMQ.Client;
-
-namespace PB.API.RabbitMQ.Ordem.MessageConsumer
+﻿namespace PB.API.RabbitMQ.Ordem.MessageConsumer
 {
     public class RabbitMQPaymentConsumer 
     {

@@ -1,6 +1,4 @@
-﻿using PB.Integration.RabbitMQ.MessageBus;
-
-namespace PB.API.RabbitMQ.Ordem.Messages
+﻿namespace PB.API.RabbitMQ.Ordem.Messages
 {
     public class CheckoutDetalheVO : BaseMessagem
     {
@@ -11,6 +9,5 @@ namespace PB.API.RabbitMQ.Ordem.Messages
         public int CarrinhoTotalItens { get; set; }
         public string NomeProduto { get; set; }
         public decimal ValorProduto { get; set; }
-
     }
 }

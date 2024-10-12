@@ -1,10 +1,4 @@
-﻿using PB.Integration.RabbitMQ.MessageBus;
-using System.Text.Json;
-using System.Text;
-using RabbitMQ.Client;
-using PB.API.RabbitMQ.Carrinho.Menssages;
-
-namespace PB.API.RabbitMQ.Carrinho.RabbitMQSender
+﻿namespace PB.API.RabbitMQ.Carrinho.RabbitMQSender
 {
     public class RabbitMQMessagemEnviar : IRabbitMQMessagemEnviar
     {

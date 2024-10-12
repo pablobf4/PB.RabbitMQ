@@ -1,6 +1,4 @@
-﻿using PB.Integration.RabbitMQ.MessageBus;
-
-namespace PB.API.RabbitMQ.Carrinho.RabbitMQSender
+﻿namespace PB.API.RabbitMQ.Carrinho.RabbitMQSender
 {
     public interface IRabbitMQMessagemEnviar
     {

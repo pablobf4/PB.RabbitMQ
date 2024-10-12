@@ -15,4 +15,8 @@
     <ProjectReference Include="..\PB.Integration.RabbitMQ.MessageBus\PB.Integration.RabbitMQ.MessageBus.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

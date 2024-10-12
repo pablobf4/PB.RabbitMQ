@@ -1,15 +1,17 @@
-﻿namespace PB.API.RabbitMQ.Ordem.MessageConsumer
+﻿namespace PB.API.RabbitMQ.Pagamento.MessageConsumer
 {
-    public class RabbitMQCheckoutConsumer : BackgroundService
+    public class RabbitMQPagamentoConsumir : BackgroundService
     {
         private IConnection _conexao;
         private IModel _channel;
         private IRabbitMQMessagemEnviar _rabbitMQMessagemEnviar;
 
-        public RabbitMQCheckoutConsumer(
-            IRabbitMQMessagemEnviar rabbitMQMessagemEnviar)
+
+        public RabbitMQPagamentoConsumir(
+        IRabbitMQMessagemEnviar rabbitMQMessagemEnviar)
         {
             _rabbitMQMessagemEnviar = rabbitMQMessagemEnviar;
+
             var factory = new ConnectionFactory
             {
                 HostName = "localhost",
@@ -19,7 +21,7 @@
             };
             _conexao = factory.CreateConnection();
             _channel = _conexao.CreateModel();
-            _channel.QueueDeclare(queue: "checkoutfila", false, false, false, arguments: null);  
+            _channel.QueueDeclare(queue: "ordempagamentoprocessofila", false, false, false, arguments: null);
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -29,30 +31,29 @@
             consumer.Received += (chanel, evt) =>
             {
                 var content = Encoding.UTF8.GetString(evt.Body.ToArray());
-                CheckoutDetalheVO vo = JsonSerializer.Deserialize<CheckoutDetalheVO>(content);
-                ProcessOrder(vo).GetAwaiter().GetResult();
+                PagamentoVO vo = JsonSerializer.Deserialize<PagamentoVO>(content);
+                ProcessPayment(vo).GetAwaiter().GetResult();
                 _channel.BasicAck(evt.DeliveryTag, false);
             };
-            _channel.BasicConsume("checkoutfila", false, consumer);
+            _channel.BasicConsume("orderpaymentprocessqueue", false, consumer);
             return Task.CompletedTask;
         }
 
-        private async Task ProcessOrder(CheckoutDetalheVO vo)
+
+        private async Task ProcessPayment(PagamentoVO vo)
         {
-            var orderId = GerarNumeroPedido(1, 100000);
-            PagamentoVO pagamento = new()
+            var resultado = this.ProcessarPagament();
+
+            AtualizarPagamentoVO pagamentoResultado = new()
             {
-               OrderId = orderId,
-               CVV = "123",
-               CartaoNumero = "411111111111",
-               Email = "pb@gmail.com",
-               Nome = vo.PrimeiroNome,
-               valorCompra = vo.ValorProduto,
-               ExpiraMesAno = DateTime.Now.ToString(),
+                Status = resultado,
+                OrdemId = vo.OrderId,
+                Email = vo.Email
             };
+
             try
             {
-                _rabbitMQMessagemEnviar.EnviarMensagem(pagamento, "ordemPagamentoprocessofila");
+                _rabbitMQMessagemEnviar.EnviarMensagem(pagamentoResultado);
             }
             catch (Exception)
             {
@@ -61,10 +62,9 @@
             }
         }
 
-        public int GerarNumeroPedido(int min, int max)
+        private bool ProcessarPagament()
         {
-            Random random = new Random();
-            return random.Next(min, max); 
+            return true;
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using PB.Integration.RabbitMQ.MessageBus;
-using RabbitMQ.Client;
-using System.Text.Json;
-using System.Text;
-using PB.API.RabbitMQ.Ordem.Messages;
-
-namespace PB.API.RabbitMQ.Ordem.RabbitMQSender
+﻿namespace PB.API.RabbitMQ.Ordem.RabbitMQSender
 {
     public class RabbitMQMessagemEnviar : IRabbitMQMessagemEnviar
     {

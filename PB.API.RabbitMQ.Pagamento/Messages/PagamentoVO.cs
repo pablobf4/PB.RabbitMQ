@@ -1,4 +1,6 @@
-﻿namespace PB.API.RabbitMQ.Ordem.Messages
+﻿using PB.Integration.RabbitMQ.MessageBus;
+
+namespace PB.API.RabbitMQ.Pagamento.Messages
 {
     public class PagamentoVO : BaseMessagem
     {

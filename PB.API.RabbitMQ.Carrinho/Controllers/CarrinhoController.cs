@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PB.API.RabbitMQ.Carrinho.Menssages;
-using PB.API.RabbitMQ.Carrinho.RabbitMQSender;
-
-namespace PB.API.RabbitMQ.Carrinho.Controllers
+﻿namespace PB.API.RabbitMQ.Carrinho.Controllers
 {
     public class CarrinhoController : ControllerBase
     {

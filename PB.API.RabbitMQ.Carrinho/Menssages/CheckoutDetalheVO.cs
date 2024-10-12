@@ -1,6 +1,4 @@
-﻿using PB.Integration.RabbitMQ.MessageBus;
-
-namespace PB.API.RabbitMQ.Carrinho.Menssages
+﻿namespace PB.API.RabbitMQ.Carrinho.Menssages
 {
     public class CheckoutDetalheVO : BaseMessagem
     {
@@ -10,5 +8,7 @@ namespace PB.API.RabbitMQ.Carrinho.Menssages
         public string Email { get; set; }
         public int CarrinhoTotalItens { get; set; }
         public long ProdutotId { get; set; }
+        public string NomeProduto { get; set; }
+        public decimal ValorProduto { get; set; }
     }
 }
