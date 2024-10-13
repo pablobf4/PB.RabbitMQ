@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
+builder.Services.AddHostedService<RabbitMQCheckoutConsumir>();
 builder.Services.AddSingleton<IRabbitMQMessagemEnviar, RabbitMQMessagemEnviar>();
 
 var app = builder.Build();

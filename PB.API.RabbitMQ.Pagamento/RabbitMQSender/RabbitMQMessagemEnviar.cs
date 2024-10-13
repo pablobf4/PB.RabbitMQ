@@ -6,7 +6,7 @@
         private readonly string _senha;
         private readonly string _usuarioNome;
         private IConnection _connection;
-        private const string ExchangeName = "DirectPagamentoUpdate_Exchange";
+        private const string ExchangeName = "DirectPaymentUpdateExchange";
         private const string PagamentoEmailAtualizarFilaName = "PagamentoEmailAtualizarFilaNome";
         private const string PagamentoOrdemAtualizarFilaName = "PagamentoOrdemAtualizarFilaNome";
 

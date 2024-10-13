@@ -35,7 +35,7 @@
                 ProcessPayment(vo).GetAwaiter().GetResult();
                 _channel.BasicAck(evt.DeliveryTag, false);
             };
-            _channel.BasicConsume("orderpaymentprocessqueue", false, consumer);
+            _channel.BasicConsume("ordempagamentoprocessofila", false, consumer);
             return Task.CompletedTask;
         }
 

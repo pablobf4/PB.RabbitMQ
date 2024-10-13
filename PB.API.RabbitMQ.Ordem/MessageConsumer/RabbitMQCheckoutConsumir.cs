@@ -1,12 +1,12 @@
 ﻿namespace PB.API.RabbitMQ.Ordem.MessageConsumer
 {
-    public class RabbitMQCheckoutConsumer : BackgroundService
+    public class RabbitMQCheckoutConsumir : BackgroundService
     {
         private IConnection _conexao;
         private IModel _channel;
         private IRabbitMQMessagemEnviar _rabbitMQMessagemEnviar;
 
-        public RabbitMQCheckoutConsumer(
+        public RabbitMQCheckoutConsumir(
             IRabbitMQMessagemEnviar rabbitMQMessagemEnviar)
         {
             _rabbitMQMessagemEnviar = rabbitMQMessagemEnviar;
@@ -50,9 +50,9 @@
                valorCompra = vo.ValorProduto,
                ExpiraMesAno = DateTime.Now.ToString(),
             };
-            try
+            try 
             {
-                _rabbitMQMessagemEnviar.EnviarMensagem(pagamento, "ordemPagamentoprocessofila");
+                _rabbitMQMessagemEnviar.EnviarMensagem(pagamento, "ordempagamentoprocessofila");
             }
             catch (Exception)
             {
